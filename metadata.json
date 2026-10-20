@@ -1,0 +1,6 @@
+{
+  "name": "NOIR / VISUALS — Cinematic 3D Photography Gallery",
+  "description": "An immersive dark techno photography exhibition featuring a 3D perspective slider layered over dynamic ambient motion.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
