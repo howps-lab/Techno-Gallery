@@ -14,9 +14,9 @@ export const SlideInformation: React.FC<SlideInformationProps> = ({
   onOpenAbout,
 }) => {
   return (
-    <div className="absolute left-6 md:left-12 bottom-24 md:bottom-28 z-20 max-w-lg pointer-events-none">
+    <div className="absolute left-5 sm:left-6 md:left-12 bottom-[76px] sm:bottom-24 md:bottom-28 z-20 max-w-lg pointer-events-none">
       {/* Editorial Number & Category with Unboxed Typography */}
-      <div className="flex items-center gap-2 text-xs font-mono tracking-[0.25em] text-cyan-400 mb-2">
+      <div className="flex items-center gap-2 text-[11px] sm:text-xs font-mono tracking-[0.25em] text-cyan-400 mb-1.5 sm:mb-2">
         <span className="font-semibold">{slide.number}</span>
         <span className="text-slate-500">/</span>
         <span className="text-slate-300 uppercase">{slide.category}</span>
@@ -25,17 +25,17 @@ export const SlideInformation: React.FC<SlideInformationProps> = ({
       </div>
 
       {/* Main Photographic Headline */}
-      <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white uppercase leading-[1.1] mb-2.5 drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
+      <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white uppercase leading-[1.1] mb-2 sm:mb-2.5 drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
         {slide.title}
       </h1>
 
-      {/* Subtitle / Poetic Premise */}
-      <p className="text-xs sm:text-sm text-slate-300/90 leading-relaxed max-w-md mb-4 font-light italic drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+      {/* Subtitle / Poetic Premise - Hidden on mobile landing screen */}
+      <p className="hidden md:block text-xs sm:text-sm text-slate-300/90 leading-relaxed max-w-md mb-4 font-light italic drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
         "{slide.subtitle}"
       </p>
 
-      {/* Technical Metadata Bar (Location & Camera details) */}
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[11px] font-mono text-slate-400 mb-4 pt-2 border-t border-white/10">
+      {/* Technical Metadata Bar (Location & Camera EXIF details) - Hidden on mobile landing screen */}
+      <div className="hidden md:flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[11px] font-mono text-slate-400 mb-4 pt-2 border-t border-white/10">
         <div className="flex items-center gap-1.5 text-slate-300">
           <MapPin className="w-3 h-3 text-cyan-400" />
           <span>{slide.location}</span>

@@ -30,7 +30,7 @@ export default function App() {
       />
 
       {/* 3. Main 3D Image Slider Stage & Foreground Controls at z-10 */}
-      <main className="relative z-10 flex-1 w-full h-full pt-16 pb-20">
+      <main className="relative z-10 flex-1 w-full h-full pt-0 md:pt-16 pb-0 md:pb-20">
         <CinematicSlider
           currentIndex={currentIndex}
           setCurrentIndex={setCurrentIndex}

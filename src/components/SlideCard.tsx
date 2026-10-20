@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PhotoSlide } from "../data/galleryData";
 import { Expand, Eye } from "lucide-react";
 
@@ -20,6 +20,17 @@ export const SlideCard: React.FC<SlideCardProps> = ({
   mousePosition,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" ? window.innerWidth < 768 : false
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // If slide is too far in background, don't render to keep performance pristine
   if (Math.abs(delta) > 2.5) {
@@ -29,7 +40,6 @@ export const SlideCard: React.FC<SlideCardProps> = ({
   const absDelta = Math.abs(delta);
   const sign = Math.sign(delta);
 
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
   const xOffset = isMobile ? 170 : 315;
   const translateX = delta * xOffset;
   const translateZ = isActive ? 25 : -absDelta * (isMobile ? 100 : 145);
@@ -47,8 +57,10 @@ export const SlideCard: React.FC<SlideCardProps> = ({
   const activeTiltX = isActive ? -mousePosition.y * 6 : 0;
   const activeTiltY = isActive ? mousePosition.x * 8 : 0;
 
+  const translateY = isMobile ? "0px" : "-50%";
+
   const cardStyle: React.CSSProperties = {
-    transform: `translate3d(calc(-50% + ${translateX}px), -50%, ${translateZ}px) rotateY(${rotateY + activeTiltY}deg) rotateX(${activeTiltX}deg) scale(${scale})`,
+    transform: `translate3d(calc(-50% + ${translateX}px), ${translateY}, ${translateZ}px) rotateY(${rotateY + activeTiltY}deg) rotateX(${activeTiltX}deg) scale(${scale})`,
     opacity: isHovered && !isActive ? 0.9 : opacity,
     zIndex,
     filter: `brightness(${currentBrightness}) blur(${isHovered ? "0px" : blur})`,
@@ -70,7 +82,7 @@ export const SlideCard: React.FC<SlideCardProps> = ({
           onSelect();
         }
       }}
-      className={`absolute left-1/2 top-1/2
+      className={`absolute left-1/2 top-[68px] md:top-1/2
         w-[252px] sm:w-[315px] md:w-[360px] lg:w-[396px] 
         h-[351px] sm:h-[432px] md:h-[495px] lg:h-[540px] 
         rounded-2xl overflow-hidden cursor-pointer select-none
@@ -157,7 +169,7 @@ export const SlideCard: React.FC<SlideCardProps> = ({
       {/* Card Footer Metadata */}
       <div className="absolute bottom-4 left-5 right-5 flex items-center justify-between pointer-events-none text-[10px] font-mono text-slate-300">
         <span className="tracking-wider">{slide.location}</span>
-        <span className="tracking-wider text-slate-400">{slide.exif.focalLength} · {slide.exif.aperture}</span>
+        <span className="hidden md:inline tracking-wider text-slate-400">{slide.exif.focalLength} · {slide.exif.aperture}</span>
       </div>
     </div>
   );

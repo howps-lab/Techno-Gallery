@@ -28,7 +28,7 @@ export const SliderControls: React.FC<SliderControlsProps> = ({
   const totalFormatted = String(totalSlides).padStart(2, "0");
 
   return (
-    <footer className="fixed bottom-0 left-0 right-0 z-40 px-6 md:px-12 py-4 border-t border-white/[0.08] backdrop-blur-md bg-black/35 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <footer className="fixed bottom-0 left-0 right-0 z-40 px-4 sm:px-6 md:px-12 py-2.5 sm:py-4 border-t border-white/[0.08] backdrop-blur-md bg-black/45 flex items-center justify-between gap-2 sm:gap-4">
       {/* Left Zone: Slide Index Indicator & Autoplay Status */}
       <div className="flex items-center gap-6 text-xs font-mono tracking-widest">
         <div className="flex items-center gap-2">
@@ -70,7 +70,7 @@ export const SliderControls: React.FC<SliderControlsProps> = ({
       </div>
 
       {/* Center Zone: Segmented Progress Bar & Direct Slide Bullets */}
-      <div className="flex flex-col items-center gap-1.5 w-full sm:w-auto max-w-xs md:max-w-md">
+      <div className="hidden sm:flex flex-col items-center gap-1.5 w-auto max-w-xs md:max-w-md">
         {/* Continuous Autoplay Progress Bar */}
         <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden relative">
           <div
