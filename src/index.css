@@ -49,7 +49,7 @@ body {
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 35px 2px rgba(14, 165, 233, 0.15);
 }
 
-/* Hide scrollbar */
+/* Hide default scrollbars globally */
 ::-webkit-scrollbar {
   display: none;
 }
@@ -57,3 +57,26 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Custom scrollbar for archive and scrollable modal containers */
+.archive-scrollbar {
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(6, 182, 212, 0.45) rgba(255, 255, 255, 0.05) !important;
+  -webkit-overflow-scrolling: touch;
+}
+.archive-scrollbar::-webkit-scrollbar {
+  display: block !important;
+  width: 6px !important;
+}
+.archive-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 9999px;
+}
+.archive-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(6, 182, 212, 0.45);
+  border-radius: 9999px;
+}
+.archive-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(6, 182, 212, 0.75);
+}
+
