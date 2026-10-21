@@ -19,14 +19,18 @@ export const ImageViewer: React.FC<ImageViewerProps> = ({
   onNext,
 }) => {
   const [isZoomed, setIsZoomed] = useState(false);
-  const [showMetadata, setShowMetadata] = useState(true);
+  const [showMetadata, setShowMetadata] = useState(false);
 
   // Keyboard navigation & lock scroll
   useEffect(() => {
     if (!isOpen) {
       setIsZoomed(false);
+      setShowMetadata(false);
       return;
     }
+    // Ensure metadata starts hidden whenever opened
+    setShowMetadata(false);
+
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
