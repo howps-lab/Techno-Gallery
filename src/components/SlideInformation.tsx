@@ -14,7 +14,7 @@ export const SlideInformation: React.FC<SlideInformationProps> = ({
   onOpenAbout,
 }) => {
   return (
-    <div className="absolute left-5 sm:left-6 md:left-12 bottom-[76px] sm:bottom-24 md:bottom-28 z-20 max-w-lg pointer-events-none">
+    <div className="absolute left-1/2 -translate-x-1/2 w-[252px] sm:w-[315px] top-[447px] sm:top-[528px] md:top-auto md:bottom-28 md:left-12 md:translate-x-0 md:w-auto md:max-w-lg z-20 pointer-events-none text-left">
       {/* Editorial Number & Category with Unboxed Typography */}
       <div className="flex items-center gap-2 text-[11px] sm:text-xs font-mono tracking-[0.25em] text-cyan-400 mb-1.5 sm:mb-2">
         <span className="font-semibold">{slide.number}</span>
@@ -54,19 +54,19 @@ export const SlideInformation: React.FC<SlideInformationProps> = ({
       </div>
 
       {/* Action Buttons */}
-      <div className="flex items-center gap-3 pointer-events-auto">
+      <div className="flex items-center gap-2 sm:gap-3 pointer-events-auto mt-1">
         <button
           onClick={onOpenViewer}
-          className="px-4 py-2 rounded-lg bg-white/10 hover:bg-cyan-500/20 border border-white/20 hover:border-cyan-400/60 text-white text-xs font-medium tracking-wider uppercase transition-all duration-200 flex items-center gap-2 cursor-pointer shadow-lg backdrop-blur-md"
+          className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-white/10 hover:bg-cyan-500/20 border border-white/20 hover:border-cyan-400/60 text-white text-[11px] sm:text-xs font-medium tracking-wider uppercase transition-all duration-200 flex items-center gap-1.5 cursor-pointer shadow-lg backdrop-blur-md"
         >
-          <Maximize2 className="w-3.5 h-3.5 text-cyan-400" />
+          <Maximize2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
           <span>Inspect Frame</span>
         </button>
         <button
           onClick={onOpenAbout}
-          className="px-3.5 py-2 rounded-lg bg-black/40 hover:bg-black/60 border border-white/10 text-slate-400 hover:text-slate-200 text-xs font-mono tracking-wider transition-all duration-200 flex items-center gap-1.5 cursor-pointer backdrop-blur-md"
+          className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg bg-black/40 hover:bg-black/60 border border-white/10 text-slate-400 hover:text-slate-200 text-[11px] sm:text-xs font-mono tracking-wider transition-all duration-200 flex items-center gap-1.5 cursor-pointer backdrop-blur-md"
         >
-          <Info className="w-3.5 h-3.5" />
+          <Info className="w-3.5 h-3.5 shrink-0" />
           <span>Curator Note</span>
         </button>
       </div>

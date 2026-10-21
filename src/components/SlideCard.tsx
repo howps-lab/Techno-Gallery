@@ -82,7 +82,7 @@ export const SlideCard: React.FC<SlideCardProps> = ({
           onSelect();
         }
       }}
-      className={`absolute left-1/2 top-[68px] md:top-1/2
+      className={`absolute left-1/2 top-[84px] md:top-1/2
         w-[252px] sm:w-[315px] md:w-[360px] lg:w-[396px] 
         h-[351px] sm:h-[432px] md:h-[495px] lg:h-[540px] 
         rounded-2xl overflow-hidden cursor-pointer select-none

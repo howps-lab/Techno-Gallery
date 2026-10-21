@@ -58,31 +58,17 @@ export const ImageViewer: React.FC<ImageViewerProps> = ({
       aria-modal="true"
       aria-label={`Detailed viewer for ${slide.title}`}
     >
-      {/* 1. Unmissable Pinned Close Button in Top-Right Corner */}
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          onClose();
-        }}
-        className="fixed top-4 right-4 sm:top-5 sm:right-6 z-[10000] px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-mono font-bold text-xs tracking-wider uppercase transition-all duration-150 flex items-center gap-2 cursor-pointer shadow-[0_0_35px_rgba(6,182,212,1)] active:scale-95 border-2 border-white"
-        title="Close Fullscreen View (Esc)"
-        aria-label="Close Fullscreen View"
-      >
-        <X className="w-4 h-4 text-slate-950 stroke-[3]" />
-        <span>CLOSE (ESC)</span>
-      </button>
-
-      {/* 2. Top Action Bar with slide title and EXIF toggle */}
-      <div className="absolute top-0 left-0 right-0 z-[9999] flex items-center justify-between px-6 md:px-12 py-4 border-b border-white/10 bg-[#07090e]/90 backdrop-blur-md">
+      {/* 1. Top Action Bar with slide title and controls */}
+      <div className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-6 md:px-12 py-4 border-b border-white/10 bg-[#07090e]/90 backdrop-blur-md">
         <div className="flex items-center gap-3 sm:gap-4 text-xs font-mono tracking-widest text-slate-300">
           <span className="text-cyan-400 font-bold">{slide.number}</span>
           <span>/</span>
-          <span className="uppercase text-white font-medium truncate max-w-[120px] sm:max-w-xs">{slide.title}</span>
+          <span className="uppercase text-white font-medium truncate max-w-[140px] sm:max-w-xs">{slide.title}</span>
           <span className="hidden sm:inline text-slate-500">·</span>
           <span className="hidden sm:inline text-slate-400">{slide.location}</span>
         </div>
 
-        <div className="flex items-center gap-2 sm:gap-3 mr-28 sm:mr-32">
+        <div className="flex items-center gap-2 sm:gap-3">
           {/* Zoom toggle button */}
           <button
             onClick={() => setIsZoomed(!isZoomed)}
@@ -107,7 +93,7 @@ export const ImageViewer: React.FC<ImageViewerProps> = ({
         </div>
       </div>
 
-      {/* 3. Main Image Stage - Clicking backdrop closes viewer, clicking image zooms */}
+      {/* 2. Main Image Stage - Clicking backdrop closes viewer, clicking image zooms */}
       <div
         className="relative w-full h-full flex items-center justify-center p-6 sm:p-12 overflow-auto cursor-default"
         onClick={onClose}
@@ -122,6 +108,19 @@ export const ImageViewer: React.FC<ImageViewerProps> = ({
           }`}
           title={isZoomed ? "Click image to Zoom Out" : "Click image to Zoom In"}
         >
+          {/* Close ✕ Button positioned directly at the top right of the card */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onClose();
+            }}
+            className="absolute top-3 right-3 sm:top-4 sm:right-4 z-40 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/80 hover:bg-black border border-white/30 hover:border-cyan-400 text-white hover:text-cyan-400 flex items-center justify-center transition-all duration-200 cursor-pointer shadow-[0_4px_25px_rgba(0,0,0,0.9)] backdrop-blur-md active:scale-90 group"
+            title="Close"
+            aria-label="Close"
+          >
+            <X className="w-5 h-5 stroke-[2.5] group-hover:rotate-90 transition-transform duration-200" />
+          </button>
+
           <img
             src={slide.src}
             alt={slide.title}
@@ -131,13 +130,13 @@ export const ImageViewer: React.FC<ImageViewerProps> = ({
         </div>
       </div>
 
-      {/* 4. Floating Navigation Controls */}
+      {/* 3. Floating Navigation Controls */}
       <button
         onClick={(e) => {
           e.stopPropagation();
           onPrev();
         }}
-        className="absolute left-6 top-1/2 -translate-y-1/2 z-[10000] w-12 h-12 rounded-full border border-white/20 bg-black/80 hover:bg-black hover:border-cyan-400 text-slate-200 hover:text-white flex items-center justify-center transition-all cursor-pointer backdrop-blur-md shadow-2xl active:scale-95"
+        className="absolute left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full border border-white/20 bg-black/80 hover:bg-black hover:border-cyan-400 text-slate-200 hover:text-white flex items-center justify-center transition-all cursor-pointer backdrop-blur-md shadow-2xl active:scale-95"
         aria-label="Previous photograph"
       >
         <ChevronLeft className="w-6 h-6" />
@@ -148,22 +147,22 @@ export const ImageViewer: React.FC<ImageViewerProps> = ({
           e.stopPropagation();
           onNext();
         }}
-        className="absolute right-6 top-1/2 -translate-y-1/2 z-[10000] w-12 h-12 rounded-full border border-white/20 bg-black/80 hover:bg-black hover:border-cyan-400 text-slate-200 hover:text-white flex items-center justify-center transition-all cursor-pointer backdrop-blur-md shadow-2xl active:scale-95"
+        className="absolute right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full border border-white/20 bg-black/80 hover:bg-black hover:border-cyan-400 text-slate-200 hover:text-white flex items-center justify-center transition-all cursor-pointer backdrop-blur-md shadow-2xl active:scale-95"
         aria-label="Next photograph"
       >
         <ChevronRight className="w-6 h-6" />
       </button>
 
-      {/* 5. Bottom Left Dismissal Hint */}
-      <div className="absolute bottom-6 left-6 md:left-12 z-[10000] pointer-events-none text-[11px] font-mono text-slate-400/80 bg-black/60 px-3 py-1.5 rounded-lg border border-white/10 backdrop-blur-md">
-        <span>Click anywhere outside image or press <kbd className="text-cyan-400 font-bold">ESC</kbd> to close</span>
+      {/* 4. Bottom Left Dismissal Hint */}
+      <div className="absolute bottom-6 left-6 md:left-12 z-30 pointer-events-none text-[11px] font-mono text-slate-400/80 bg-black/60 px-3 py-1.5 rounded-lg border border-white/10 backdrop-blur-md">
+        <span>Click ✕ or anywhere outside image to close</span>
       </div>
 
-      {/* 6. Expandable EXIF Metadata Drawer */}
+      {/* 5. Expandable EXIF Metadata Drawer */}
       {showMetadata && (
         <div
           onClick={(e) => e.stopPropagation()}
-          className="absolute bottom-6 right-6 md:right-12 z-[10000] max-w-sm rounded-xl border border-white/20 bg-[#07090e]/95 backdrop-blur-2xl p-5 shadow-2xl text-left pointer-events-auto"
+          className="absolute bottom-6 right-6 md:right-12 z-30 max-w-sm rounded-xl border border-white/20 bg-[#07090e]/95 backdrop-blur-2xl p-5 shadow-2xl text-left pointer-events-auto"
         >
           <div className="flex items-center justify-between border-b border-white/10 pb-2.5 mb-3">
             <span className="text-xs font-mono tracking-widest text-cyan-400 uppercase font-semibold">
